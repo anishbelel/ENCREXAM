@@ -18,8 +18,8 @@ import { firestore } from "@/firebase/firebase";
 
 type TopbarProps = {
 	problemPage?: boolean;
-	questions: string[];
-	contestId: string;
+	questions?: string[];
+	contestId?: string;
 };
 
 const Topbar: React.FC<TopbarProps> = ({ problemPage, questions, contestId }) => {
@@ -60,7 +60,7 @@ const Topbar: React.FC<TopbarProps> = ({ problemPage, questions, contestId }) =>
 		setcurrProblemId(nextProblemId);
 		const keys = Object.keys(problems); // ['two-sum', 'jump-game', ...]
 
-		if(contestId) router.push(`/contests/${contestId}/${questions[nextProblemId]}`);
+		if(contestId && questions) router.push(`/contests/${contestId}/${questions[nextProblemId]}`);
 		else router.push(`/problems/${keys[nextProblemId]}`);
 		
 		
